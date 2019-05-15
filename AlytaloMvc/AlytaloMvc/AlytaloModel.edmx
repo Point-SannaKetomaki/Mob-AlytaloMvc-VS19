@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjektitDBCareModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Huoneet">
+          <Key>
+            <PropertyRef Name="HuoneId" />
+          </Key>
+          <Property Name="HuoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HuoneenNimi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SaunanTila">
+          <Key>
+            <PropertyRef Name="SaunanTilaId" />
+          </Key>
+          <Property Name="SaunanTilaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaunaId" Type="int" Nullable="false" />
+          <Property Name="SaunaOnOff" Type="bit" />
+          <Property Name="SaunanPerusLämpö" Type="decimal" Precision="7" Scale="1" />
+        </EntityType>
+        <EntityType Name="Saunat">
+          <Key>
+            <PropertyRef Name="SaunaId" />
+          </Key>
+          <Property Name="SaunaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaunanNimi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TalonLämpö">
+          <Key>
+            <PropertyRef Name="TalonLämpöId" />
+          </Key>
+          <Property Name="TalonLämpöId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaloId" Type="int" Nullable="false" />
+          <Property Name="TalonNykyLämpö" Type="int" />
+          <Property Name="TalonTavoiteLämpö" Type="int" />
+        </EntityType>
+        <EntityType Name="Talot">
+          <Key>
+            <PropertyRef Name="TaloId" />
+          </Key>
+          <Property Name="TaloId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TalonNimi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ValonTila">
+          <Key>
+            <PropertyRef Name="ValonTilaId" />
+          </Key>
+          <Property Name="ValonTilaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HuoneId" Type="int" Nullable="false" />
+          <Property Name="ValoId" Type="int" Nullable="false" />
+          <Property Name="ValoOnOff" Type="bit" Nullable="false" />
+          <Property Name="ValonMaara" Type="decimal" Precision="7" Scale="1" />
+        </EntityType>
+        <EntityType Name="Valot">
+          <Key>
+            <PropertyRef Name="ValoId" />
+          </Key>
+          <Property Name="ValoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ValonNimi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_SaunanTila_Saunat">
+          <End Role="Saunat" Type="Self.Saunat" Multiplicity="1" />
+          <End Role="SaunanTila" Type="Self.SaunanTila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saunat">
+              <PropertyRef Name="SaunaId" />
+            </Principal>
+            <Dependent Role="SaunanTila">
+              <PropertyRef Name="SaunaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TalonLämpö_Talot">
+          <End Role="Talot" Type="Self.Talot" Multiplicity="1" />
+          <End Role="TalonLämpö" Type="Self.TalonLämpö" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Talot">
+              <PropertyRef Name="TaloId" />
+            </Principal>
+            <Dependent Role="TalonLämpö">
+              <PropertyRef Name="TaloId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValonTila_Huoneet">
+          <End Role="Huoneet" Type="Self.Huoneet" Multiplicity="1" />
+          <End Role="ValonTila" Type="Self.ValonTila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Huoneet">
+              <PropertyRef Name="HuoneId" />
+            </Principal>
+            <Dependent Role="ValonTila">
+              <PropertyRef Name="HuoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValonTila_Valot">
+          <End Role="Valot" Type="Self.Valot" Multiplicity="1" />
+          <End Role="ValonTila" Type="Self.ValonTila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Valot">
+              <PropertyRef Name="ValoId" />
+            </Principal>
+            <Dependent Role="ValonTila">
+              <PropertyRef Name="ValoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjektitDBCareModelStoreContainer">
+          <EntitySet Name="Huoneet" EntityType="Self.Huoneet" Schema="mob" store:Type="Tables" />
+          <EntitySet Name="SaunanTila" EntityType="Self.SaunanTila" Schema="mob" store:Type="Tables" />
+          <EntitySet Name="Saunat" EntityType="Self.Saunat" Schema="mob" store:Type="Tables" />
+          <EntitySet Name="TalonLämpö" EntityType="Self.TalonLämpö" Schema="mob" store:Type="Tables" />
+          <EntitySet Name="Talot" EntityType="Self.Talot" Schema="mob" store:Type="Tables" />
+          <EntitySet Name="ValonTila" EntityType="Self.ValonTila" Schema="mob" store:Type="Tables" />
+          <EntitySet Name="Valot" EntityType="Self.Valot" Schema="mob" store:Type="Tables" />
+          <AssociationSet Name="FK_SaunanTila_Saunat" Association="Self.FK_SaunanTila_Saunat">
+            <End Role="Saunat" EntitySet="Saunat" />
+            <End Role="SaunanTila" EntitySet="SaunanTila" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TalonLämpö_Talot" Association="Self.FK_TalonLämpö_Talot">
+            <End Role="Talot" EntitySet="Talot" />
+            <End Role="TalonLämpö" EntitySet="TalonLämpö" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValonTila_Huoneet" Association="Self.FK_ValonTila_Huoneet">
+            <End Role="Huoneet" EntitySet="Huoneet" />
+            <End Role="ValonTila" EntitySet="ValonTila" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValonTila_Valot" Association="Self.FK_ValonTila_Valot">
+            <End Role="Valot" EntitySet="Valot" />
+            <End Role="ValonTila" EntitySet="ValonTila" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjektitDBCareModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Huoneet">
+          <Key>
+            <PropertyRef Name="HuoneId" />
+          </Key>
+          <Property Name="HuoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HuoneenNimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ValonTila" Relationship="Self.FK_ValonTila_Huoneet" FromRole="Huoneet" ToRole="ValonTila" />
+        </EntityType>
+        <EntityType Name="SaunanTila">
+          <Key>
+            <PropertyRef Name="SaunanTilaId" />
+          </Key>
+          <Property Name="SaunanTilaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaunaId" Type="Int32" Nullable="false" />
+          <Property Name="SaunaOnOff" Type="Boolean" />
+          <Property Name="SaunanPerusLämpö" Type="Decimal" Precision="7" Scale="1" />
+          <NavigationProperty Name="Saunat" Relationship="Self.FK_SaunanTila_Saunat" FromRole="SaunanTila" ToRole="Saunat" />
+        </EntityType>
+        <EntityType Name="Saunat">
+          <Key>
+            <PropertyRef Name="SaunaId" />
+          </Key>
+          <Property Name="SaunaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaunanNimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SaunanTila" Relationship="Self.FK_SaunanTila_Saunat" FromRole="Saunat" ToRole="SaunanTila" />
+        </EntityType>
+        <EntityType Name="TalonLämpö">
+          <Key>
+            <PropertyRef Name="TalonLämpöId" />
+          </Key>
+          <Property Name="TalonLämpöId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaloId" Type="Int32" Nullable="false" />
+          <Property Name="TalonNykyLämpö" Type="Int32" />
+          <Property Name="TalonTavoiteLämpö" Type="Int32" />
+          <NavigationProperty Name="Talot" Relationship="Self.FK_TalonLämpö_Talot" FromRole="TalonLämpö" ToRole="Talot" />
+        </EntityType>
+        <EntityType Name="Talot">
+          <Key>
+            <PropertyRef Name="TaloId" />
+          </Key>
+          <Property Name="TaloId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TalonNimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TalonLämpö" Relationship="Self.FK_TalonLämpö_Talot" FromRole="Talot" ToRole="TalonLämpö" />
+        </EntityType>
+        <EntityType Name="ValonTila">
+          <Key>
+            <PropertyRef Name="ValonTilaId" />
+          </Key>
+          <Property Name="ValonTilaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HuoneId" Type="Int32" Nullable="false" />
+          <Property Name="ValoId" Type="Int32" Nullable="false" />
+          <Property Name="ValoOnOff" Type="Boolean" Nullable="false" />
+          <Property Name="ValonMaara" Type="Decimal" Precision="7" Scale="1" />
+          <NavigationProperty Name="Huoneet" Relationship="Self.FK_ValonTila_Huoneet" FromRole="ValonTila" ToRole="Huoneet" />
+          <NavigationProperty Name="Valot" Relationship="Self.FK_ValonTila_Valot" FromRole="ValonTila" ToRole="Valot" />
+        </EntityType>
+        <EntityType Name="Valot">
+          <Key>
+            <PropertyRef Name="ValoId" />
+          </Key>
+          <Property Name="ValoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ValonNimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ValonTila" Relationship="Self.FK_ValonTila_Valot" FromRole="Valot" ToRole="ValonTila" />
+        </EntityType>
+        <Association Name="FK_ValonTila_Huoneet">
+          <End Role="Huoneet" Type="Self.Huoneet" Multiplicity="1" />
+          <End Role="ValonTila" Type="Self.ValonTila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Huoneet">
+              <PropertyRef Name="HuoneId" />
+            </Principal>
+            <Dependent Role="ValonTila">
+              <PropertyRef Name="HuoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaunanTila_Saunat">
+          <End Role="Saunat" Type="Self.Saunat" Multiplicity="1" />
+          <End Role="SaunanTila" Type="Self.SaunanTila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saunat">
+              <PropertyRef Name="SaunaId" />
+            </Principal>
+            <Dependent Role="SaunanTila">
+              <PropertyRef Name="SaunaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TalonLämpö_Talot">
+          <End Role="Talot" Type="Self.Talot" Multiplicity="1" />
+          <End Role="TalonLämpö" Type="Self.TalonLämpö" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Talot">
+              <PropertyRef Name="TaloId" />
+            </Principal>
+            <Dependent Role="TalonLämpö">
+              <PropertyRef Name="TaloId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValonTila_Valot">
+          <End Role="Valot" Type="Self.Valot" Multiplicity="1" />
+          <End Role="ValonTila" Type="Self.ValonTila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Valot">
+              <PropertyRef Name="ValoId" />
+            </Principal>
+            <Dependent Role="ValonTila">
+              <PropertyRef Name="ValoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjektitDBCareEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Huoneet" EntityType="Self.Huoneet" />
+          <EntitySet Name="SaunanTila" EntityType="Self.SaunanTila" />
+          <EntitySet Name="Saunat" EntityType="Self.Saunat" />
+          <EntitySet Name="TalonLämpö" EntityType="Self.TalonLämpö" />
+          <EntitySet Name="Talot" EntityType="Self.Talot" />
+          <EntitySet Name="ValonTila" EntityType="Self.ValonTila" />
+          <EntitySet Name="Valot" EntityType="Self.Valot" />
+          <AssociationSet Name="FK_ValonTila_Huoneet" Association="Self.FK_ValonTila_Huoneet">
+            <End Role="Huoneet" EntitySet="Huoneet" />
+            <End Role="ValonTila" EntitySet="ValonTila" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaunanTila_Saunat" Association="Self.FK_SaunanTila_Saunat">
+            <End Role="Saunat" EntitySet="Saunat" />
+            <End Role="SaunanTila" EntitySet="SaunanTila" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TalonLämpö_Talot" Association="Self.FK_TalonLämpö_Talot">
+            <End Role="Talot" EntitySet="Talot" />
+            <End Role="TalonLämpö" EntitySet="TalonLämpö" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValonTila_Valot" Association="Self.FK_ValonTila_Valot">
+            <End Role="Valot" EntitySet="Valot" />
+            <End Role="ValonTila" EntitySet="ValonTila" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjektitDBCareModelStoreContainer" CdmEntityContainer="ProjektitDBCareEntities">
+          <EntitySetMapping Name="Huoneet">
+            <EntityTypeMapping TypeName="ProjektitDBCareModel.Huoneet">
+              <MappingFragment StoreEntitySet="Huoneet">
+                <ScalarProperty Name="HuoneId" ColumnName="HuoneId" />
+                <ScalarProperty Name="HuoneenNimi" ColumnName="HuoneenNimi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaunanTila">
+            <EntityTypeMapping TypeName="ProjektitDBCareModel.SaunanTila">
+              <MappingFragment StoreEntitySet="SaunanTila">
+                <ScalarProperty Name="SaunanTilaId" ColumnName="SaunanTilaId" />
+                <ScalarProperty Name="SaunaId" ColumnName="SaunaId" />
+                <ScalarProperty Name="SaunaOnOff" ColumnName="SaunaOnOff" />
+                <ScalarProperty Name="SaunanPerusLämpö" ColumnName="SaunanPerusLämpö" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saunat">
+            <EntityTypeMapping TypeName="ProjektitDBCareModel.Saunat">
+              <MappingFragment StoreEntitySet="Saunat">
+                <ScalarProperty Name="SaunaId" ColumnName="SaunaId" />
+                <ScalarProperty Name="SaunanNimi" ColumnName="SaunanNimi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TalonLämpö">
+            <EntityTypeMapping TypeName="ProjektitDBCareModel.TalonLämpö">
+              <MappingFragment StoreEntitySet="TalonLämpö">
+                <ScalarProperty Name="TalonLämpöId" ColumnName="TalonLämpöId" />
+                <ScalarProperty Name="TaloId" ColumnName="TaloId" />
+                <ScalarProperty Name="TalonNykyLämpö" ColumnName="TalonNykyLämpö" />
+                <ScalarProperty Name="TalonTavoiteLämpö" ColumnName="TalonTavoiteLämpö" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Talot">
+            <EntityTypeMapping TypeName="ProjektitDBCareModel.Talot">
+              <MappingFragment StoreEntitySet="Talot">
+                <ScalarProperty Name="TaloId" ColumnName="TaloId" />
+                <ScalarProperty Name="TalonNimi" ColumnName="TalonNimi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValonTila">
+            <EntityTypeMapping TypeName="ProjektitDBCareModel.ValonTila">
+              <MappingFragment StoreEntitySet="ValonTila">
+                <ScalarProperty Name="ValonTilaId" ColumnName="ValonTilaId" />
+                <ScalarProperty Name="HuoneId" ColumnName="HuoneId" />
+                <ScalarProperty Name="ValoId" ColumnName="ValoId" />
+                <ScalarProperty Name="ValoOnOff" ColumnName="ValoOnOff" />
+                <ScalarProperty Name="ValonMaara" ColumnName="ValonMaara" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Valot">
+            <EntityTypeMapping TypeName="ProjektitDBCareModel.Valot">
+              <MappingFragment StoreEntitySet="Valot">
+                <ScalarProperty Name="ValoId" ColumnName="ValoId" />
+                <ScalarProperty Name="ValonNimi" ColumnName="ValonNimi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

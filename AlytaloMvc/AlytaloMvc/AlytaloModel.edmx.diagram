@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2bc05778717e4739aff258619fd315be" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjektitDBCareModel.Huoneet" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektitDBCareModel.SaunanTila" Width="1.5" PointX="8" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektitDBCareModel.Saunat" Width="1.5" PointX="5.375" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektitDBCareModel.TalonLämpö" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektitDBCareModel.Talot" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektitDBCareModel.ValonTila" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektitDBCareModel.Valot" Width="1.5" PointX="5.625" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="ProjektitDBCareModel.FK_ValonTila_Huoneet" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjektitDBCareModel.FK_SaunanTila_Saunat" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjektitDBCareModel.FK_TalonLämpö_Talot" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjektitDBCareModel.FK_ValonTila_Valot" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
