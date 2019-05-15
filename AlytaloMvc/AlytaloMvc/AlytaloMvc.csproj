@@ -125,62 +125,55 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlytaloModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AlytaloModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AlytaloModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AlytaloModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AlytaloModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AlytaloModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SaunaController.cs" />
+    <Compile Include="Controllers\TaloController.cs" />
+    <Compile Include="Controllers\ValoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Huoneet.cs">
+    <Compile Include="Models\AlytaloModel.Context.cs">
+      <DependentUpon>AlytaloModel.Context.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Models\AlytaloModel.cs">
+      <DependentUpon>AlytaloModel.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Models\AlytaloModel.Designer.cs">
+      <DependentUpon>AlytaloModel.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Models\Huoneet.cs">
+      <DependentUpon>AlytaloModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SaunanTila.cs">
+      <DependentUpon>AlytaloModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Saunat.cs">
+      <DependentUpon>AlytaloModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TalonLämpö.cs">
+      <DependentUpon>AlytaloModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Talot.cs">
+      <DependentUpon>AlytaloModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ValonTila.cs">
+      <DependentUpon>AlytaloModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Valot.cs">
       <DependentUpon>AlytaloModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaunanTila.cs">
-      <DependentUpon>AlytaloModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Saunat.cs">
-      <DependentUpon>AlytaloModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TalonLämpö.cs">
-      <DependentUpon>AlytaloModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Talot.cs">
-      <DependentUpon>AlytaloModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ValonTila.cs">
-      <DependentUpon>AlytaloModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Valot.cs">
-      <DependentUpon>AlytaloModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AlytaloModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AlytaloModel.edmx</DependentUpon>
-      <LastGenOutput>AlytaloModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="AlytaloModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AlytaloModel.edmx</DependentUpon>
-      <LastGenOutput>AlytaloModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -190,12 +183,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <EntityDeploy Include="AlytaloModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AlytaloModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="AlytaloModel.edmx.diagram">
+    <Content Include="Models\AlytaloModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AlytaloModel.edmx</DependentUpon>
+      <LastGenOutput>AlytaloModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\AlytaloModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AlytaloModel.edmx</DependentUpon>
+      <LastGenOutput>AlytaloModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -219,6 +215,13 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <EntityDeploy Include="Models\AlytaloModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AlytaloModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\AlytaloModel.edmx.diagram">
+      <DependentUpon>AlytaloModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -263,10 +266,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Sauna\Index.cshtml" />
+    <Content Include="Views\Talo\Index.cshtml" />
+    <Content Include="Views\Valo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
